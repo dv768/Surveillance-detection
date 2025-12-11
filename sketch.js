@@ -40,32 +40,8 @@ function detectPeople() {
       detections = results;
     });
   }
-  //requestAnimationFrame(detectPeople);
+  requestAnimationFrame(detectPeople);
 }
-
-// Start detection at a fixed interval
-setInterval(() => {
-  if (detector && modelLoaded) {
-    detector.detect(video, (results) => {
-      detections = results;
-    });
-  }
-}, 200); // 200ms = 5 detections per second
-
-function modelReady() {
-  console.log('Model loaded!');
-  modelLoaded = true;
-
-  // Start periodic detection
-  setInterval(() => {
-    if (detector && modelLoaded) {
-      detector.detect(video, (results) => {
-        detections = results;
-      });
-    }
-  }, 200);
-}
-
 
 function draw() {
   background(0);
