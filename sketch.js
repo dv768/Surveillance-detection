@@ -9,7 +9,7 @@ function setup() {
   
   // Create video capture
   video = createCapture(VIDEO);
-  video.size(640, 480);
+  video.size(1240, 720);
   video.hide();
   
   // Wait a bit for everything to load
