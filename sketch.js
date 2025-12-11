@@ -175,34 +175,43 @@ function drawDetections(dets, scaleVal) {
 }
 
 function drawInfoPanel(index, gender, confidence, colorVal) {
-  const panelX = width - 220;
-  const panelY = 20 + index * 140;
+  // Responsive padding (5% of canvas width/height)
+  const paddingX = width * 0.05;
+  const paddingY = height * 0.05;
+  
   const panelW = 200;
   const panelH = 120;
-  
-  fill(colorVal[0], colorVal[0], colorVal[0], 50);
+  const spacingY = panelH + 20; // vertical spacing between panels
+
+  // Calculate panel position
+  let panelX = paddingX;  
+  let panelY = paddingY + index * spacingY;
+
+  // Ensure panel does not go below canvas
+  if (panelY + panelH + paddingY > height) {
+    panelY = height - panelH - paddingY;
+  }
+
+  // Panel background
+  push();
+  fill(0, 0, 0, 128); // black, 50% opacity
   stroke(colorVal);
   strokeWeight(2);
   rect(panelX, panelY, panelW, panelH);
-  
+  pop();
+
+  // Panel text
+  push();
   fill(colorVal);
   noStroke();
   textSize(12);
   textStyle(BOLD);
   text(`PERSON_${nf(index + 1, 3)}`, panelX + 10, panelY + 20);
-  
+
   textStyle(NORMAL);
   textSize(11);
-  text(`GENDER: ${gender}`, panelX + 10, panelY + 45);
-  text(`CONFIDENCE: ${nf(confidence * 100, 2, 1)}%`, panelX + 10, panelY + 65);
-  
-  stroke(colorVal);
-  strokeWeight(1);
-  line(panelX + 10, panelY + 75, panelX + panelW - 10, panelY + 75);
-  
-  noStroke();
-  text('STATUS: TRACKING', panelX + 10, panelY + 95);
-}
+  text(`GE
+
 
 function drawHUD() {
   fill(0, 255, 0);
