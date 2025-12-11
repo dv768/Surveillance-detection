@@ -210,7 +210,18 @@ function drawInfoPanel(index, gender, confidence, colorVal) {
 
   textStyle(NORMAL);
   textSize(11);
-  text(`GE
+  text(`GENDER: ${gender}`, panelX + 10, panelY + 45);
+  text(`CONFIDENCE: ${nf(confidence * 100, 2, 1)}%`, panelX + 10, panelY + 65);
+
+  stroke(colorVal);
+  strokeWeight(1);
+  line(panelX + 10, panelY + 75, panelX + panelW - 10, panelY + 75);
+
+  noStroke();
+  text('STATUS: TRACKING', panelX + 10, panelY + 95);
+  pop();
+}
+
 
 
 function drawHUD() {
